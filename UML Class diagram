@@ -1,8 +1,0 @@
-```mermaid
-classDiagram
-    Session : +String title
-    Session : +String description
-    Session : +int session_length
-    Session : +bool is_active
-    Session : +get_absolute_url()
-```
