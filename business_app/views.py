@@ -36,3 +36,16 @@ def CreateSession(request):
         
     context={'form':form}
     return render(request, 'business_app/session_form.html', context)
+
+def UpdateSession(request, session_id):
+    session = Session.objects.get(id=session_id)
+    form = SessionForm(instance=session)
+
+    if request.method == 'POST':
+        form = SessionForm(request.POST, instance=session)
+        if form.is_valid():
+            form.save()
+            return redirect('session-detail', session_id)
+    
+    context={'form':form}
+    return render(request, 'business_app/session_form.html', context)

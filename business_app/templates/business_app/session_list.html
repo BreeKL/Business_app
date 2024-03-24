@@ -16,7 +16,7 @@ Session List
     {% for session in session_list %}
         <li>
             <a href="{{ session.get_absolute_url }}">{{ session.name }}</a>
-
+            <a href="{% url 'update-session' session.id %}" class="btn btn-outline-warning" role="button">Update</a>
         </li>
     {% endfor %}
 </div>    
