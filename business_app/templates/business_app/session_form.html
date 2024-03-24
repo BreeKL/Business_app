@@ -1,0 +1,18 @@
+{% extends "business_app/base_template.html" %}
+
+{% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {% if session.name %}
+    <h1>Edit {{ session.name }}</h1>
+  {% else %}
+    <h1>Create new project</h1>
+  {% endif %}
+  <p> </p>
+  {% comment %} {{form}} {% endcomment %}
+  <table>
+    {{ form.as_table }}
+  </table> 
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}

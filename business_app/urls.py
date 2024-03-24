@@ -10,5 +10,7 @@ urlpatterns = [
 path('', views.index, name='index'),
 path('login/', views.login, name='login'),
 path('sessions/', views.SessionListView.as_view(), name='sessions'),
+path('session/<pk>', views.SessionDetailView.as_view(), name='session-detail'),
 
+path('session/create/', views.CreateSession, name='create-session',)
 ]

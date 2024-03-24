@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 
@@ -16,7 +17,8 @@ class Session(models.Model):
     )
     name = models.CharField(max_length=200)
     description = models.TextField()
-    length = models.CharField(max_length=200, choices=LENGTH)
+    length = models.CharField(max_length=20, choices=LENGTH)
+    price = models.PositiveSmallIntegerField(validators=[MaxValueValidator(10000)])
     is_active = models.BooleanField()
 
     #Define default String to return the name for representing the Model object."
@@ -28,3 +30,4 @@ class Session(models.Model):
     # add a "View on Site" button to the model's record editing screens in the Admin site
     def get_absolute_url(self):
         return reverse('session-detail', args=[str(self.id)])
+ 

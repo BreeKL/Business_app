@@ -7,10 +7,17 @@ Session List
 <!-- Replace block content in base_template.html -->
 {% block content %}
 <h1>Session list</h1>
- 
+
+<div class="create session">
+    <a href="{% url 'create-session' %}" class="btn btn-outline-success" role="button">Create</a>
+</div>
+
 <div class = "list-group">
     {% for session in session_list %}
-        <li><a href="{{ session.get_absolute_url }}">{{ student.name }}</a></li>
+        <li>
+            <a href="{{ session.get_absolute_url }}">{{ session.name }}</a>
+
+        </li>
     {% endfor %}
 </div>    
 

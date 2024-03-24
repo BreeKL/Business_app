@@ -1,0 +1,19 @@
+<!-- inherit from base.html-->
+{% extends "business_app/base_template.html" %}
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h1>Session Name: {{ session.name }}</h1>
+
+<p><strong>Length:</strong> {{ session.get_length_display }}</p>
+<p><strong>Details:</strong> {{ session.description }}</p>
+<p><strong>Price:</strong> {{ session.price }}</p>
+<p><strong>Is the session active?</strong> {{ session.is_active }}
+    {% comment %} <a href="{{ student.portfolio.get_absolute_url }}">{{ student.portfolio.title }}</a>  
+    {% if user.is_authenticated %}
+    <a href="{% url 'update-portfolio' student.portfolio.id %}" class="btn btn-warning" role="button">Update Portfolio</a>
+    {% endif %} {% endcomment %}
+</p>
+
+   
+{% endblock %}
