@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .models import *
+from django.views.generic import ListView, DetailView
 
 
 # Create your views here.
@@ -12,3 +14,7 @@ def index(request):
 # example for a second login page with a basic placeholder response
 def login(request):
     return render (HttpResponse, 'Login Page')
+
+
+class SessionListView(ListView):
+    model = Session

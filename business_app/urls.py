@@ -8,5 +8,7 @@ urlpatterns = [
 # name='index' parameter is to dynamically create url
 # example in html <a href="{% url 'index' %}">Home</a>.
 path('', views.index, name='index'),
-path('login/', views.login, name='login')
+path('login/', views.login, name='login'),
+path('sessions/', views.SessionListView.as_view(), name='sessions'),
+
 ]

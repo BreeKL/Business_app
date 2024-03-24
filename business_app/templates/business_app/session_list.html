@@ -1,0 +1,18 @@
+<!-- inherit from base_template.html-->
+{% extends "business_app/base_template.html" %}
+{%block tile%}
+Session List
+{%endblock%}
+ 
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h1>Session list</h1>
+ 
+<div class = "list-group">
+    {% for session in session_list %}
+        <li><a href="{{ session.get_absolute_url }}">{{ student.name }}</a></li>
+    {% endfor %}
+</div>    
+
+
+{%endblock%}
