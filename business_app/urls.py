@@ -14,5 +14,5 @@ path('session/<pk>', views.SessionDetailView.as_view(), name='session-detail'),
 
 path('session/create/', views.CreateSession, name='create-session'),
 path('session/<session_id>/update/', views.UpdateSession, name='update-session'),
-
+path('session/<session_id>/delete/', views.DeleteSession, name='delete-session'),
 ]

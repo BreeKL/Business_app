@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.views.generic import ListView, DetailView
 from .forms import *
+from django.contrib import messages
 
 
 # Create your views here.
@@ -49,3 +50,15 @@ def UpdateSession(request, session_id):
     
     context={'form':form}
     return render(request, 'business_app/session_form.html', context)
+
+def DeleteSession(request, session_id):
+    session = Session.objects.get(id=session_id)
+
+    if request.method == 'POST':
+        session.delete()
+        messages.success(request, "The session has been deleted.")
+
+        return redirect('sessions')
+    
+    context = {'item': session, 'session_id':session_id}
+    return render(request, 'business_app/session_confirm_delete.html', context)

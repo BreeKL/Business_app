@@ -5,14 +5,16 @@
 {% block content %}
 <h1>Session Name: {{ session.name }}</h1>
 
+{% if user.is_authenticated %}
+    <a href="{% url 'update-session' session.id %}" class="btn btn-outline-warning" role="button">Update</a>
+    <a href="{% url 'delete-session' session.id %}" class="btn btn-outline-danger" role="button">Delete</a>    
+{% endif %}
+<p> </p>
 <p><strong>Length:</strong> {{ session.get_length_display }}</p>
 <p><strong>Details:</strong> {{ session.description }}</p>
 <p><strong>Price:</strong> ${{ session.price }}</p>
 <p><strong>Is the session active?</strong> {{ session.is_active }}
-    {% comment %} <a href="{{ student.portfolio.get_absolute_url }}">{{ student.portfolio.title }}</a>  
-    {% if user.is_authenticated %}
-    <a href="{% url 'update-portfolio' student.portfolio.id %}" class="btn btn-warning" role="button">Update Portfolio</a>
-    {% endif %} {% endcomment %}
+
 </p>
 
    
