@@ -12,13 +12,15 @@ Session List
     <a href="{% url 'create-session' %}" class="btn btn-outline-success" role="button">Create</a>
 </div>
 <p> </p>
-<div class = "list-group">
+<div class = "session-list-group">
     {% for session in session_list %}
-        <li>
-            <a href="{{ session.get_absolute_url }}">{{ session.name }}</a>
-            <a href="{% url 'update-session' session.id %}" class="btn btn-outline-warning" role="button">Update</a>
-            <a href="{% url 'delete-session' session.id %}" class="btn btn-outline-danger" role="button">Delete</a>
-        </li>
+        <div class="session-list-group-item p-3 border">
+            <ul>
+                <a href="{{ session.get_absolute_url }}">{{ session.name }}</a>
+                <a href="{% url 'update-session' session.id %}" class="btn btn-outline-warning" role="button">Update</a>
+                <a href="{% url 'delete-session' session.id %}" class="btn btn-outline-danger" role="button">Delete</a>
+            </ul>
+        </div>
     {% endfor %}
 </div>    
 
