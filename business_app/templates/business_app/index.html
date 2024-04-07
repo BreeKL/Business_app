@@ -3,8 +3,11 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h2>Welcome to the new massage therapy page</h2>
-
-<h4>Where we can do more for you</h4>
-
+<div class="main">
+    <h2>Welcome to the new massage therapy page</h2>
+    <p> </p>
+    <h4>Where we can do more for you</h4>
+    <p> </p>
+</div>
+<a href="{% url 'sessions' %}" class="btn btn-outline-secondary"><h5>Click here to view sessions</h5></a>
 {% endblock %}
