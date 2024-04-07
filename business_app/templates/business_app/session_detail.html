@@ -1,0 +1,28 @@
+<!-- inherit from base.html-->
+{% extends "business_app/base_template.html" %}
+
+<style> 
+    .btn {
+        color: #000000;
+        border-color: warning;
+    }
+</style>
+
+<!-- Replace block content in base_template.html -->
+{% block content %}
+<h1>Session Name: {{ session.name }}</h1>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'update-session' session.id %}" class="btn btn-outline-warning" role="btn">Update</a>
+    <a href="{% url 'delete-session' session.id %}" class="btn btn-outline-danger" role="button">Delete</a>    
+{% endif %}
+<p> </p>
+<p><strong>Length:</strong> {{ session.get_length_display }}</p>
+<p><strong>Details:</strong> {{ session.description }}</p>
+<p><strong>Price:</strong> ${{ session.price }}</p>
+<p><strong>Is the session active?</strong> {{ session.is_active }}
+
+</p>
+
+   
+{% endblock %}
