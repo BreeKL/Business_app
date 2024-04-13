@@ -4,6 +4,7 @@ from .models import *
 from django.views.generic import ListView, DetailView
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth.models import Group, User
 
 
 # Create your views here.
@@ -13,10 +14,34 @@ def index(request):
     return render ( request, 'business_app/index.html')
 
 
-# example for a second login page with a basic placeholder response
-def login(request):
-    return render (HttpResponse, 'Login Page')
+# login and logout views
+# def login(request):
+#     return render (request, 'login.html')
 
+def logout(request):
+    return render (request, 'logout.html')
+
+# View for user registration page
+def RegisterPage(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            form.save()
+
+            messages.success(request, 'Account was created for '+ username)
+            print("user was supposedly created")
+            return redirect('login')
+        
+        else: print("form is not valid?")
+    # else: 
+    #     print("not post method")
+    #     form = UserCreationForm()
+
+    context = {'form':form}
+    return render(request, 'registration/register.html', context)
 
 # Views for CRUD pages
 class SessionListView(ListView):
