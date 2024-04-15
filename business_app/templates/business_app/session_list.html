@@ -8,9 +8,11 @@ Session List
 {% block content %}
 <h1>Session list</h1>
 
-<div class="create session">
-    <a href="{% url 'create-session' %}" class="btn btn-outline-success" role="button">Create</a>
-</div>
+{% if user.is_authenticated %}
+    <div class="create session">
+        <a href="{% url 'create-session' %}" class="btn btn-outline-success" role="button">Create</a>
+    </div>
+{% endif %}
 <p> </p>
 <div class = "session-list-group">
     {% for session in session_list %}

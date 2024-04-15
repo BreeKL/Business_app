@@ -18,8 +18,8 @@ def index(request):
 # def login(request):
 #     return render (request, 'login.html')
 
-def logout(request):
-    return render (request, 'logout.html')
+def LoggedOut(request):
+    return render (request, 'registration/logout_successful.html')
 
 # View for user registration page
 def RegisterPage(request):
