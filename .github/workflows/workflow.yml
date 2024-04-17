@@ -13,9 +13,9 @@ jobs:
   run:
     runs-on: windows-latest
     steps:
-    - uses: checkout@v2
+    - uses: actions/checkout@v2
       with:
-        fetch-depth: ‘2’
+        fetch-depth: "2"
 
     - name: Setup Python
       uses: actions/setup-python@master
@@ -27,3 +27,4 @@ jobs:
         coverage run manage.py test
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v2
+
