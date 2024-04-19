@@ -4,11 +4,12 @@ on:
     branches:
     - main
     - release/*
+    - sprint01
+    - sprint02
   pull_request:
     branches:
     - main
-    - sprint01
-    - sprint02
+
 jobs:
   run:
     runs-on: windows-latest
