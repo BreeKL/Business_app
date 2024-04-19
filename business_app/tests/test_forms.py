@@ -1,24 +1,37 @@
 from django.test import TestCase
+from business_app.forms import SessionForm  
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-# Create your tests here.
-class YourTestClass(TestCase):
-    @classmethod
-    def setUpTestData(cls): # Run once to set up non-modified data for all class methods
-        #print("setUpTestData: for test_forms.")
-        pass
+class SessionFormTestCase(TestCase):
+    def test_valid_form(self):
+        form_data = {
+            'name': 'Test Session',
+            'description': 'A test session',
+            'length': 60,
+            'price': 50,
+            'is_active': True,
+        }
+        form = SessionForm(data=form_data)
+        self.assertTrue(form.is_valid())
 
-    def setUp(self): # Run once for every test method to set up clean data.
-        #print("setUp: for test_forms.")
-        pass
+    def test_invalid_form(self):
+        # Test with invalid data (e.g., missing required fields)
+        form = SessionForm(data={})
+        self.assertFalse(form.is_valid())
 
-    def test_false_is_false(self): # test passes
-        #print("Method: test_false_is_false for test_forms.")
-        self.assertFalse(False)
+class CreateUserFormTestCase(TestCase):
+    def test_valid_form(self):
+        form_data = {
+            'username': 'testuser',
+            'email': 'test@example.com',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+        }
+        form = UserCreationForm(data=form_data)
+        self.assertTrue(form.is_valid())
 
-    def test_false_is_true(self): # test fails
-        #print("Method: test_false_is_true for test_forms.")
-        self.assertTrue(False)
-
-    def test_one_plus_one_equals_two(self): #test passes
-        #print("Method: test_one_plus_one_equals_two for test_forms.")
-        self.assertEqual(1 + 1, 2)
+    def test_invalid_form(self):
+        # Test with invalid data (e.g., mismatched passwords)
+        form = UserCreationForm(data={'password1': 'test1', 'password2': 'test2'})
+        self.assertFalse(form.is_valid())

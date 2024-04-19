@@ -1,15 +1,16 @@
 {% extends "business_app/base_template.html" %}
+{% block title %}Delete Session{% endblock %}
 
 {% block content %}
 
-<h1>Delete Project</h1>
+<h1>Delete Session</h1>
 
-<p>Are you sure you want to delete {{ session.name }}?</p>
+<p>Are you sure you want to delete {{ item.name }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" action="" class="btn btn-outline-danger" value="Yes, delete.">
-  <a href="{{ view.get_success_url }}" class="btn btn-outline-secondary">Cancel</a>
+  <input type="submit" action="" class="btn btn-outline-danger" value="Yes, delete">
+  <a href="{% url 'session-detail' session_id %}" class="btn btn-outline-secondary">Cancel</a>
 </form>
 
 {% endblock %}

@@ -1,24 +1,20 @@
 from django.test import TestCase
+from business_app.models import Session
 
-# Create your tests here.
-class YourTestClass(TestCase):
-    @classmethod
-    def setUpTestData(cls): # Run once to set up non-modified data for all class methods
-        #print("setUpTestData: for test_models.")
-        pass
+class SessionModelTestCase(TestCase):
+    def setUp(self):
+        # Create sample Session instances for testing
+        self.session1 = Session.objects.create(name="Sample Session 1", length="60", price=50, is_active=True)
+        self.session2 = Session.objects.create(name="Sample Session 2", length="45", price=40, is_active=False)
 
-    def setUp(self): # Run once for every test method to set up clean data.
-        #print("setUp: for test_models.")
-        pass
+    def test_session_str_representation(self):
+        """Test the __str__ method of Session model."""
+        self.assertEqual(str(self.session1), "Sample Session 1")
+        self.assertEqual(str(self.session2), "Sample Session 2")
 
-    def test_false_is_false(self): # test passes
-        #print("Method: test_false_is_false for test_models.")
-        self.assertFalse(False)
+    def test_session_absolute_url(self):
+        """Test the get_absolute_url method of Session model."""
+        expected_url = f"/session/{self.session1.id}"  # Adjust the URL pattern as needed
+        self.assertEqual(self.session1.get_absolute_url(), expected_url)
 
-    def test_false_is_true(self): # test fails
-        #print("Method: test_false_is_true for test_models.")
-        self.assertTrue(False)
 
-    def test_one_plus_one_equals_two(self): #test passes
-        #print("Method: test_one_plus_one_equals_two for test_models.")
-        self.assertEqual(1 + 1, 2)

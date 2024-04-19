@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import Group, User
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -36,9 +38,6 @@ def RegisterPage(request):
             return redirect('login')
         
         else: print("form is not valid?")
-    # else: 
-    #     print("not post method")
-    #     form = UserCreationForm()
 
     context = {'form':form}
     return render(request, 'registration/register.html', context)
@@ -50,6 +49,7 @@ class SessionListView(ListView):
 class SessionDetailView(DetailView):
     model = Session
 
+@login_required
 def CreateSession(request):
     """CreateSession displays the form to add a new session
     """
@@ -64,6 +64,7 @@ def CreateSession(request):
     context={'form':form}
     return render(request, 'business_app/session_form.html', context)
 
+@login_required
 def UpdateSession(request, session_id):
     """UpdateSession displays the form to edit an existing session
     """
@@ -79,6 +80,7 @@ def UpdateSession(request, session_id):
     context={'form':form}
     return render(request, 'business_app/session_form.html', context)
 
+@login_required
 def DeleteSession(request, session_id):
     """DeleteSession displays the form to delete an existing session
     """

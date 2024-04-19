@@ -10,11 +10,12 @@ urlpatterns = [
 path('', views.index, name='index'),
 path('accounts/logout_successful', views.LoggedOut, name='logged-out'),
 path('sessions/', views.SessionListView.as_view(), name='sessions'),
-path('session/<pk>', views.SessionDetailView.as_view(), name='session-detail'),
 
-path('session/create/', views.CreateSession, name='create-session'),
+path('session/create', views.CreateSession, name='create-session'),
 path('session/<session_id>/update/', views.UpdateSession, name='update-session'),
 path('session/<session_id>/delete/', views.DeleteSession, name='delete-session'),
+path('session/<pk>', views.SessionDetailView.as_view(), name='session-detail'),
+
 ]
 
 # Add Django site authentication urls (for login, logout, password management)
