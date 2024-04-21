@@ -9,6 +9,7 @@ urlpatterns = [
 # example in html <a href="{% url 'index' %}">Home</a>.
 path('', views.index, name='index'),
 path('accounts/logout_successful', views.LoggedOut, name='logged-out'),
+path('accounts/login_successful', views.LoggedIn, name='logged-in'),
 path('sessions/', views.SessionListView.as_view(), name='sessions'),
 
 path('session/create', views.CreateSession, name='create-session'),

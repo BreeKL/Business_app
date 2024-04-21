@@ -20,6 +20,10 @@ def index(request):
 # def login(request):
 #     return render (request, 'login.html')
 
+def LoggedIn(request):
+    return render (request, 'registration/login_successful.html')
+
+
 def LoggedOut(request):
     return render (request, 'registration/logout_successful.html')
 
