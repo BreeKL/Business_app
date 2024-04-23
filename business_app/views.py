@@ -6,6 +6,8 @@ from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required
+from appointment.models import Service
+
 
 
 
@@ -22,7 +24,6 @@ def index(request):
 
 def LoggedIn(request):
     return render (request, 'registration/login_successful.html')
-
 
 def LoggedOut(request):
     return render (request, 'registration/logout_successful.html')
@@ -98,3 +99,7 @@ def DeleteSession(request, session_id):
     
     context = {'item': session, 'session_id':session_id}
     return render(request, 'business_app/session_confirm_delete.html', context)
+
+def ViewSchedule(request):
+    return render(request, 'appointment\\appointments.html')
+    

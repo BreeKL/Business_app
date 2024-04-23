@@ -8,19 +8,20 @@ urlpatterns = [
 # name='index' parameter is to dynamically create url
 # example in html <a href="{% url 'index' %}">Home</a>.
 path('', views.index, name='index'),
+
+# Add Django site authentication urls (for login, logout, password management)
+path('accounts/', include('django.contrib.auth.urls')),
+path('accounts/register/', views.RegisterPage, name='register_page'),
 path('accounts/logout_successful', views.LoggedOut, name='logged-out'),
 path('accounts/login_successful', views.LoggedIn, name='logged-in'),
-path('sessions/', views.SessionListView.as_view(), name='sessions'),
 
+path('sessions/', views.SessionListView.as_view(), name='sessions'),
 path('session/create', views.CreateSession, name='create-session'),
 path('session/<session_id>/update/', views.UpdateSession, name='update-session'),
 path('session/<session_id>/delete/', views.DeleteSession, name='delete-session'),
 path('session/<pk>', views.SessionDetailView.as_view(), name='session-detail'),
 
-]
+path('schedule/', views.ViewSchedule, name='view-schedule'),
 
-# Add Django site authentication urls (for login, logout, password management)
-urlpatterns += [
-path('accounts/', include('django.contrib.auth.urls')),
-path('accounts/register/', views.RegisterPage, name='register_page'),
+path('appointment/', include('appointment.urls')),
 ]

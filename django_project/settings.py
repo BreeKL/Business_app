@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'business_app',
-    'selenium'
+    'selenium',
+    'appointment',
+    'django_q',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,17 @@ LOGOUT_REDIRECT_URL = 'logged-out'
 
 # Logs in the console any emails sent
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Will be used in the footer of the emails sent to clients upon scheduling an appointment
+APPOINTMENT_WEBSITE_NAME = 'Your Massage Therapy App'
+
+# To allow clients to subscribe to reminder emails
+Q_CLUSTER = {
+   'name': 'DjangORM',
+   'workers': 4,
+   'timeout': 90,
+   'retry': 120,
+   'queue_limit': 50,
+   'bulk': 10,
+   'orm': 'default',
+}

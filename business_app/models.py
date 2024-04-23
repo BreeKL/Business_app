@@ -35,3 +35,11 @@ class Session(models.Model):
     def get_absolute_url(self):
         return reverse('session-detail', args=[str(self.id)])
  
+class CalendarEvent(models.Model):
+
+    name = models.CharField(max_length=200)
+
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
